@@ -1,4 +1,8 @@
 from django.db import models
+from rest_framework import viewsets
+from .models import Property
+from .serializers import PropertySerializer
+from .customuser import CustomUser
 
 # Create your models here.
 class Property(models.Model):
@@ -9,11 +13,4 @@ class Property(models.Model):
     amenities = models.CharField(max_length=255)
     is_available = models.BooleanField(default=True)
     landlord = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-
-    from rest_framework import viewsets
-from .models import Property
-from .serializers import PropertySerializer
-
-class PropertyViewSet(viewsets.ModelViewSet):
-    queryset = Property.objects.all()
-    serializer_class = PropertySerializer
+    
